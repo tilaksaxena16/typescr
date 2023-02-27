@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React , {useState} from "react";
+import { Hello } from "./hello";
+import { NameEdit } from "./nameEdit";
 
-function App() {
+const App :React.FC = () => {
+  const [name, setName] = useState("");
+
+  const setUsernameState = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Hello userName={name} />
+      <NameEdit userName={name} onChange={setUsernameState} />
+    </>
   );
-}
+};
 
-export default App;
+export { App };
